@@ -1,6 +1,4 @@
 import streamlit as st
-st.write("Hello")
-"""import streamlit as st
 import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
@@ -29,4 +27,4 @@ st.subheader("This is a line graph")
 st.line_chart(df, x = "Date", y = "Temperature")
 st.divider()
 st.subheader("Full data table")
-st.table(df)"""
+st.table(df)
