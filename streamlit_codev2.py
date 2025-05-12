@@ -44,15 +44,6 @@ if not day_data.empty:
 else:
     st.warning("No data for selected day")
 
-# Option 2: Manual time input
-manual_time = st.text_input("Or enter exact time (YYYY-MM-DD HH:MM):")
-if manual_time:
-    try:
-        target_time = pd.to_datetime(manual_time)
-        closest_row = df.iloc[(df["Date"] - target_time).abs().argsort()[0]]
-        st.write(f"Closest record ({closest_row['Date']}): **{closest_row['Temperature']}°C**")
-    except:
-        st.error("Invalid format! Use YYYY-MM-DD HH:MM")
 # --- Feature 2: Daily Line Graph ---
 st.divider()
 st.subheader("Daily Temperature Chart")
