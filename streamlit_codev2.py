@@ -53,6 +53,23 @@ if manual_time:
         st.write(f"Closest record ({closest_row['Date']}): **{closest_row['Temperature']}°C**")
     except:
         st.error("Invalid format! Use YYYY-MM-DD HH:MM")
+# --- Feature 2: Daily Line Graph ---
+st.divider()
+st.subheader("Daily Temperature Chart")
+
+# Date selector with default to middle date
+center_date = st.selectbox(
+    "Choose a day to analyze:",
+    df["Day"].unique(),
+    index=len(df["Day"].unique())//2  # Auto-center
+)
+
+# Filter and plot
+daily_data = df[df["Day"] == center_date]
+if not daily_data.empty:
+    st.line_chart(daily_data, x="Hour", y="Temperature")
+else:
+    st.warning("No data for selected day")
 """
 df["Date"] = pd.to_datetime(
     df["Date"].str.strip(),
