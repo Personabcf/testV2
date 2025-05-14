@@ -68,7 +68,7 @@ if not daily_data.empty:
     st.line_chart(daily_data, x="Hour", y="Temperature")
 else:
     st.warning("No data for selected day")
-st.warning("This is a warning")
+st.error("This is a ERROR")
 """
 df["Date"] = pd.to_datetime(
     df["Date"].str.strip(),
