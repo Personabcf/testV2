@@ -69,4 +69,4 @@ if not daily_data.empty:
 else:
     st.warning("No data for selected day")
 st.write("All temperature is in degrees celsius.")
-st.write("The point of this webiste is to prodive river temperatures. The river has been collected appropriately with no damage to the natural environment.")
+st.write("The point of this webiste is to prodive river temperatures. The river temperature has been collected appropriately with no damage to the natural environment.")
