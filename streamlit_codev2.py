@@ -68,19 +68,5 @@ if not daily_data.empty:
     st.line_chart(daily_data, x="Hour", y="Temperature")
 else:
     st.warning("No data for selected day")
-"""
-df["Date"] = pd.to_datetime(
-    df["Date"].str.strip(),
-    format='%m/%d/%Y %H:%M:%S',  
-    errors="coerce"
-)
-
-
-df = df.dropna(subset=["Date"]).sort_values("Date")
-df["Date"] = df["Date"].dt.strftime('%Y-%m-%d %H:%M:%S')
-st.subheader("This is a line graph")
-st.line_chart(df, x = "Date", y = "Temperature")
-st.divider()
-st.subheader("Full data table")
-st.table(df)
-"""
+st.write("All temperature is in degrees celsius.")
+st.write("The point of this webiste is to prodive river temperatures. The river has been collected appropriately with no damage to the natural environment.")
