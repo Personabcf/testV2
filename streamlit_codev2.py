@@ -15,9 +15,6 @@ data = sheet.get_all_records()
 df = pd.DataFrame(data)  
 
 
-# ... (your existing imports and data loading code) ...
-
-# Fix date parsing (keep as datetime object - remove string conversion!)
 df["Date"] = pd.to_datetime(
     df["Date"].str.strip(),
     format='%m/%d/%Y %H:%M:%S',
@@ -30,10 +27,8 @@ df = df.dropna(subset=["Date"]).sort_values("Date")
 df["Day"] = df["Date"].dt.date
 df["Hour"] = df["Date"].dt.strftime("%H:%M")
 
-# --- Feature 1: Day/Hour Selection or Manual Input ---
 st.subheader("Find Temperature by Time")
 
-# Option 1: Select from dropdowns
 selected_day = st.selectbox("Choose a day", df["Day"].unique())
 day_data = df[df["Day"] == selected_day]
 
@@ -51,18 +46,15 @@ if manual_time:
         st.write(f"Closest record ({closest_row['Date']}): **{closest_row['Temperature']}°C**")
     except:
         st.error("Invalid format! Use YYYY-MM-DD HH:MM")
-# --- Feature 2: Daily Line Graph ---
 st.divider()
 st.subheader("Daily Temperature Chart")
 
-# Date selector with default to middle date
 center_date = st.selectbox(
     "Choose a day to analyze:",
     df["Day"].unique(),
-    index=len(df["Day"].unique())//2  # Auto-center
+    index=len(df["Day"].unique())//2  
 )
 
-# Filter and plot
 daily_data = df[df["Day"] == center_date]
 if not daily_data.empty:
     st.line_chart(daily_data, x="Hour", y="Temperature")
